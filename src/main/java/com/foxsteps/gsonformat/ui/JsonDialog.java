@@ -2,10 +2,13 @@ package com.foxsteps.gsonformat.ui;
 
 import com.foxsteps.gsonformat.ConvertBridge;
 import com.foxsteps.gsonformat.common.JsonUtils;
+import com.foxsteps.gsonformat.common.PsiClassUtil;
 import com.foxsteps.gsonformat.common.StringUtils;
 import com.foxsteps.gsonformat.common.SystemUtils;
 import com.foxsteps.gsonformat.config.Config;
-import com.foxsteps.gsonformat.common.PsiClassUtil;
+import com.foxsteps.gsonformat.tools.json.JSONArray;
+import com.foxsteps.gsonformat.tools.json.JSONException;
+import com.foxsteps.gsonformat.tools.json.JSONObject;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.MessageType;
@@ -13,9 +16,6 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.impl.source.PsiJavaFileImpl;
 import org.apache.http.util.TextUtils;
-import com.foxsteps.gsonformat.tools.json.JSONArray;
-import com.foxsteps.gsonformat.tools.json.JSONException;
-import com.foxsteps.gsonformat.tools.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -140,7 +140,7 @@ public class JsonDialog extends JFrame implements ConvertBridge.Operator {
                         commentAR.setText(JsonUtils.getJsonComment(json, formatJson));
                     } catch (Exception exception) {
                         exception.printStackTrace();
-                        NotificationCenter.sendNotificationForProject("json格式不正确，格式需要标准的json或者json5",NotificationType.ERROR,project);
+                        NotificationCenter.sendNotificationForProject("json格式不正确，格式需要标准的json或者json5", NotificationType.ERROR, project);
                         return;
                     }
                 }
@@ -208,7 +208,7 @@ public class JsonDialog extends JFrame implements ConvertBridge.Operator {
                 if (!StringUtils.isNotBlank(json)) {
                     return;
                 }
-                String formatJson="";
+                String formatJson = "";
                 try {
                     if (json.startsWith("{")) {
                         JSONObject jsonObject = new JSONObject(json);
@@ -220,7 +220,7 @@ public class JsonDialog extends JFrame implements ConvertBridge.Operator {
                         editTP.setText(formatJson);
                     }
                     SystemUtils.copyToClipboard(formatJson);
-                    NotificationCenter.sendNotificationForProject(" Copy json success !",NotificationType.INFORMATION,project);
+                    NotificationCenter.sendNotificationForProject(" Copy json success !", NotificationType.INFORMATION, project);
                 } catch (JSONException jsonException) {
                     try {
                         String goodJson = JsonUtils.removeComment(json);
@@ -228,11 +228,11 @@ public class JsonDialog extends JFrame implements ConvertBridge.Operator {
                         editTP.setText(formatJson);
                         commentAR.setText(JsonUtils.getJsonComment(json, formatJson));
                         SystemUtils.copyToClipboard(formatJson);
-                        NotificationCenter.sendNotificationForProject(" Copy json success !",NotificationType.INFORMATION,project);
+                        NotificationCenter.sendNotificationForProject(" Copy json success !", NotificationType.INFORMATION, project);
                     } catch (Exception exception) {
-                        formatJson="";
+                        formatJson = "";
                         exception.printStackTrace();
-                        NotificationCenter.sendNotificationForProject("json格式不正确，格式需要标准的json或者json5",NotificationType.ERROR,project);
+                        NotificationCenter.sendNotificationForProject("json格式不正确，格式需要标准的json或者json5", NotificationType.ERROR, project);
                         return;
                     }
                 }
@@ -247,7 +247,7 @@ public class JsonDialog extends JFrame implements ConvertBridge.Operator {
                     return;
                 }
                 SystemUtils.copyToClipboard(jsonComment);
-                NotificationCenter.sendNotificationForProject("Copy jsonComment success",NotificationType.INFORMATION,project);
+                NotificationCenter.sendNotificationForProject("Copy jsonComment success", NotificationType.INFORMATION, project);
             }
         });
 

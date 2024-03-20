@@ -1,6 +1,5 @@
 package com.foxsteps.gsonformat.common;
 
-import com.foxsteps.gsonformat.entity.FieldApiInfo;
 import com.foxsteps.gsonformat.enums.FieldApiTypeEnum;
 import com.foxsteps.gsonformat.tools.json.JSONArray;
 import com.foxsteps.gsonformat.tools.json.JSONException;

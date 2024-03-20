@@ -1,13 +1,14 @@
 package com.foxsteps.gsonformat.ui;
 
-import com.foxsteps.gsonformat.tools.checktreetable.FiledTreeTableModel;
 import com.foxsteps.gsonformat.ConvertBridge;
 import com.foxsteps.gsonformat.action.DataWriter;
+import com.foxsteps.gsonformat.common.PsiClassUtil;
 import com.foxsteps.gsonformat.common.StringUtils;
 import com.foxsteps.gsonformat.config.Config;
 import com.foxsteps.gsonformat.entity.ClassEntity;
 import com.foxsteps.gsonformat.entity.FieldEntity;
-import com.foxsteps.gsonformat.common.PsiClassUtil;
+import com.foxsteps.gsonformat.tools.checktreetable.FiledTreeTableModel;
+import com.foxsteps.gsonformat.tools.ux.CheckTreeTableManager;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiClass;
@@ -15,7 +16,6 @@ import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiFile;
 import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
-import com.foxsteps.gsonformat.tools.ux.CheckTreeTableManager;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

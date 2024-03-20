@@ -2,7 +2,10 @@ package com.foxsteps.gsonformat.common;
 
 import com.foxsteps.gsonformat.entity.ClassEntity;
 import com.foxsteps.gsonformat.entity.FieldEntity;
-import com.intellij.psi.*;
+import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiComment;
+import com.intellij.psi.PsiElementFactory;
+import com.intellij.psi.PsiField;
 
 /**
  * @author wangzejun
