@@ -285,10 +285,14 @@ public class ConvertBridge {
      * @return
      */
     public String removeComment(String str) {
-        String temp = str.replaceAll("/\\*" +
-                "[\\S\\s]*?" +
-                "\\*/", "");
-        return temp.replaceAll("//[\\S\\s]*?\n", "");
+        if (StringUtils.isNotBlank(str)) {
+            String temp = str.replaceAll("/\\*" +
+                    "[\\S\\s]*?" +
+                    "\\*/", "");
+            return temp.replaceAll("//[\\S\\s]*?\n", "");
+        }
+
+        return "";
     }
 
     /**
@@ -552,12 +556,12 @@ public class ConvertBridge {
         //是否添加注释
         //boolean writeExtra = Config.getInstant().isGenerateComments();
         //去掉构造函数注释
-        boolean writeExtra=false;
+        boolean writeExtra = false;
         for (int i = 0; i < fieldList.size(); i++) {
             String key = fieldList.get(i);
             Object value = json.get(key);
             if (value instanceof JSONArray) {
-                FieldArrayEntity arrayEntity=new FieldArrayEntity();
+                FieldArrayEntity arrayEntity = new FieldArrayEntity();
                 arrayEntity.setSortNo(i);
                 arrayEntity.setKey(key);
                 listEntityList.add(arrayEntity);
@@ -578,11 +582,11 @@ public class ConvertBridge {
             FieldArrayEntity entity = listEntityList.get(i);
             Object type = json.get(entity.getKey());
             FieldEntity fieldEntity = createField(parentClass, entity.getKey(), type, fieldApiInfoMap);
-            String className=null;
+            String className = null;
             if (StringUtils.isNotBlank(parentClass.getQualifiedName())) {
-                className=parentClass.getClassName();
+                className = parentClass.getClassName();
             }
-            String fieldComment = FieldHelper.getFieldComment(fieldApiInfoMap, entity.getKey(),className);
+            String fieldComment = FieldHelper.getFieldComment(fieldApiInfoMap, entity.getKey(), className);
             fieldEntity.setFieldComment(fieldComment);
             fieldEntity.setSortNo(entity.getSortNo());
             fieldEntityList.add(fieldEntity);
@@ -611,8 +615,8 @@ public class ConvertBridge {
             if (StringUtils.isFirsrtUpper(fieldName)) {
                 if (fieldName.length() == 1) {
                     fieldName = fieldName.toLowerCase();
-                }else{
-                    fieldName = fieldName.substring(0,1).toLowerCase()+ fieldName.substring(1);
+                } else {
+                    fieldName = fieldName.substring(0, 1).toLowerCase() + fieldName.substring(1);
                 }
             }
 
